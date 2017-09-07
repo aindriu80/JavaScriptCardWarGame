@@ -13,6 +13,7 @@ function battle(){
     if(firstRun){
         firstRun = false;
         buildCards();
+        shuffleArray(cards);
     }
     console.log('works');
 }
@@ -29,7 +30,19 @@ function buildCards(){
                 icon:suitNew
             }
             cards.push(card);
-        }
-        console.log(cards);
+        }       
     }
+     console.log(cards);
+}
+
+function shuffleArray(array){
+    for(var x = array.length -1; x>0; x--){
+        var ii = Math.floor(Math.random() * (x+1));
+        var temp = array[x];
+         array[x] = array[ii];
+         arrayii = temp;
+        
+    }
+    console.log(array);
+    return array;
 }
