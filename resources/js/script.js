@@ -75,9 +75,13 @@ function attack(){
 
 function showCard(c,p){
     var move = p * 40;    
-    var bgColor = (c.icon == "H" || c.icon == "D") ? "red" : "black";
-   var bCard = '<div class="icard" style:"color:'+bgColor+'">' +c.num + ' &' + c.suit + ';</div>';
-    console.log(c,move);
-   return bCard;
+   //var bgColor = (c.icon == "H" || c.icon == "D") ? "red" : "black";
+      var bCard = '<div class="icard '+c.suit+' " style="left:'+move+'px">';
+      bCard += '<div class="cardtop suit">' + c.num + '<br></div>';
+      bCard += '<div class="cardmid suit"></div>';
+      bCard += '<div class="cardbottom suit">' + c.num + '<br></div></div>';
+      console.log(c, move);
+      return bCard;
 }
+
 
