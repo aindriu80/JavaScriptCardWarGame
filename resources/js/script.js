@@ -35,6 +35,13 @@ function buildCards(){
      console.log(cards);
 }
 
+function dealCards(){
+    for(var i =0; i<array.length;i++){
+        var m = i % 2;         
+        players[m].push(array[i]);     
+        }
+    }
+
 function shuffleArray(array){
     for(var x = array.length -1; x>0; x--){
         var ii = Math.floor(Math.random() * (x+1));
