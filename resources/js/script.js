@@ -5,6 +5,9 @@ var players = [[],[]];
 var firstRun = true;
 var gameover = false;
 var fightButton = document.querySelector("#btnBattle");
+var p1 = document.querySelector("#player1 .hand");
+var p2 = document.querySelector("#player2 .hand");
+
 
 // event listeners
 fightButton.addEventListener('click',battle);
@@ -15,6 +18,7 @@ function battle(){
         firstRun = false;
         buildCards();
         shuffleArray(cards);
+        dealCards(cards);
     }
     attack();   
 }
@@ -37,34 +41,43 @@ function buildCards(){
      console.log(cards);
 }
 
-function dealCards(){
-    for(var i =0; i<array.length;i++){
-        var m = i % 2;         
-        players[m].push(array[i]);     
-        }
+function dealCards(array) {
+      for (var i = 0; i < array.length; i++) {
+        var m = i % 2;
+        players[m].push(array[i]);
+      }
     }
 
-function shuffleArray(array){
-    for(var x = array.length -1; x>0; x--){
-        var ii = Math.floor(Math.random() * (x+1));
+function shuffleArray(array) {
+      for (var x = array.length - 1; x > 0; x--) {
+        var ii = Math.floor(Math.random() * (x + 1));
         var temp = array[x];
-         array[x] = array[ii];
-         arrayii = temp;
-        
+        array[x] = array[ii];
+        array[ii] = temp;
+      }
+      return array;
     }
-    console.log(array);
-    return array;
-}
 
 function attack(){
     if(!gameover){
         var card1 = players[0].shift();
-        var card2 = players[1].shift();
+        var card2 = players[1].shift();        
         var pot = [card1, card2];
         
         // Update html
+        p1.innerHTML = showCard(card1,0);
+        p2.innerHTML = showCard(card2,0);
         // Check winners
         // Update scores
         
     }
 }
+
+function showCard(c,p){
+    var move = p * 40;    
+    var bgColor = (c.icon == "H" || c.icon == "D") ? "red" : "black";
+   var bCard = '<div class="icard" style:"color:'+bgColor+'">' +c.num + ' &' + c.suit + ';</div>';
+    console.log(c,move);
+   return bCard;
+}
+
