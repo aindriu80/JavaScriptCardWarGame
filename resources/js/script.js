@@ -3,6 +3,7 @@ var cardFace = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"
 var cards = [];
 var players = [[],[]];
 var firstRun = true;
+var gameover = false;
 var fightButton = document.querySelector("#btnBattle");
 
 // event listeners
@@ -15,7 +16,7 @@ function battle(){
         buildCards();
         shuffleArray(cards);
     }
-    console.log('works');
+    attack();   
 }
 
 function buildCards(){
@@ -32,6 +33,7 @@ function buildCards(){
             cards.push(card);
         }       
     }
+   
      console.log(cards);
 }
 
@@ -52,4 +54,17 @@ function shuffleArray(array){
     }
     console.log(array);
     return array;
+}
+
+function attack(){
+    if(!gameover){
+        var card1 = players[0].shift();
+        var card2 = players[1].shift();
+        var pot = [card1, card2];
+        
+        // Update html
+        // Check winners
+        // Update scores
+        
+    }
 }
