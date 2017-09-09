@@ -101,6 +101,7 @@ function checkWinner(card1,card2,pot){
         console.log("hand 2 wins");
         players[0] = players[0].concat(pot);       
     }else{
+        battleMode(pot);
         console.log("tie");
         //enter battle mode
     }
@@ -109,7 +110,25 @@ function checkWinner(card1,card2,pot){
 }
 
 
-
+function battleMode(pot){
+    var card1, card2;
+    var pos = (pot.length/2);
+    if((players[0].length < 4)||(player[1].length <4)){
+        return;
+    }else{
+        for(var i =0;i < 4;i++){
+            card1 = players[0].shift();
+            pot = pot.concat(card1);
+            p1.innerHTML += showCard(card1,(pos+i));
+        }
+        for(var i =0;i < 4;i++){
+            card2 = players[1].shift();
+            pot = pot.concat(card2);
+            p1.innerHTML += showCard(card2,(pos+i));
+        }
+        checkWinner(card1,card2,pot);
+    }
+}
 
 
 
