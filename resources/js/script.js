@@ -4,7 +4,10 @@ var cards = [];
 var players = [[],[]];
 var firstRun = true;
 var gameover = false;
+var timer;
+var r = 0;
 var fightButton = document.querySelector("#btnBattle");
+var fightButton10 = document.querySelector("#btnBattle10");
 var p1 = document.querySelector("#player1 .hand");
 var p2 = document.querySelector("#player2 .hand");
 var s1 = document.querySelector("#player1 .score");
@@ -12,9 +15,19 @@ var s2 = document.querySelector("#player2 .score");
 
 // event listeners
 fightButton.addEventListener('click',battle);
+fightButton10.addEventListener('click',function(){
+    rounds(10);
+});
 
 //functions
 function battle(){
+    if(timer){
+        r--;
+        outputMessage("Rounds left " + r);
+        if(r<1){
+          window.clearInterval(timer);
+        }
+    }
     if(firstRun){
         firstRun = false;
         buildCards();
@@ -132,3 +145,9 @@ function outputMessage(message){
     document.getElementById("message").innerHTML = message;    
 }
 
+function rounds(a){
+    r=a;
+ timer = setInterval(function(){
+     battle()
+ },100);
+}

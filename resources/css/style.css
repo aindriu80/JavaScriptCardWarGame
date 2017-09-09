@@ -60,3 +60,12 @@
     background-color: black;
     padding: 5px;
 }
+
+.btn{
+    border-radius: 5px;
+    padding: 9px 20px;
+    
+    display: inline-block;
+    text-align: center;
+   
+}
