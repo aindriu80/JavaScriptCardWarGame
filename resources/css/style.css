@@ -53,3 +53,10 @@
 .score{
     font-size: 1.5em;
 }
+
+#message{
+    font-size: 1.2em;
+    color:white;
+    background-color: black;
+    padding: 5px;
+}

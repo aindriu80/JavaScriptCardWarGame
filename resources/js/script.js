@@ -10,8 +10,6 @@ var p2 = document.querySelector("#player2 .hand");
 var s1 = document.querySelector("#player1 .score");
 var s2 = document.querySelector("#player2 .score");
 
-
-
 // event listeners
 fightButton.addEventListener('click',battle);
 
@@ -39,9 +37,7 @@ function buildCards(){
             }
             cards.push(card);
         }       
-    }
-   
-     console.log(cards);
+    }   
 }
 
 function dealCards(array) {
@@ -70,6 +66,7 @@ function attack(){
         // Update html
         p1.innerHTML = showCard(card1,0);
         p2.innerHTML = showCard(card2,0);
+        
         // Check winners
         checkWinner(card1,card2,pot);
        
@@ -77,6 +74,8 @@ function attack(){
         s1.innerHTML =  players[0].length;
         s2.innerHTML =  players[1].length;
         
+    }else{
+       outputMessage("Game Over");
     }
 }
 
@@ -87,33 +86,31 @@ function showCard(c,p){
       bCard += '<div class="cardtop suit">' + c.num + '<br></div>';
       bCard += '<div class="cardmid suit"></div>';
       bCard += '<div class="cardbottom suit">' + c.num + '<br></div></div>';
-      console.log(c, move);
       return bCard;
 }
 
-function checkWinner(card1,card2,pot){
-    console.log(card1,card2);
+function checkWinner(card1,card2,pot){    
+   if((players[0].length <= 4)||(players[1].length <= 4)){       
+       gameover = true;
+       return;
+   }
     if(card1.cardValue > card2.cardValue){
-        console.log("hand 1 wins");
+          outputMessage("Player 1 wins");
         players[0] = players[0].concat(pot);
     } 
     else if(card1.cardValue < card2.cardValue){
-        console.log("hand 2 wins");
-        players[0] = players[0].concat(pot);       
+       outputMessage("Player 2 wins");
+        players[1] = players[1].concat(pot);       
     }else{
-        battleMode(pot);
-        console.log("tie");
-        //enter battle mode
-    }
-    console.log(players);
-        
+        battleMode(pot);     
+          outputMessage("Battle Mode");
+    }      
 }
-
 
 function battleMode(pot){
     var card1, card2;
     var pos = (pot.length/2);
-    if((players[0].length < 4)||(player[1].length <4)){
+    if((players[0].length < 4)||(players[1].length <4)){
         return;
     }else{
         for(var i =0;i < 4;i++){
@@ -124,11 +121,14 @@ function battleMode(pot){
         for(var i =0;i < 4;i++){
             card2 = players[1].shift();
             pot = pot.concat(card2);
-            p1.innerHTML += showCard(card2,(pos+i));
+            p2.innerHTML += showCard(card2,(pos+i));
         }
         checkWinner(card1,card2,pot);
     }
 }
 
-
+function outputMessage(message){
+    console.log(message);
+    document.getElementById("message").innerHTML = message;    
+}
 
