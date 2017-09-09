@@ -7,6 +7,9 @@ var gameover = false;
 var fightButton = document.querySelector("#btnBattle");
 var p1 = document.querySelector("#player1 .hand");
 var p2 = document.querySelector("#player2 .hand");
+var s1 = document.querySelector("#player1 .score");
+var s2 = document.querySelector("#player2 .score");
+
 
 
 // event listeners
@@ -68,7 +71,11 @@ function attack(){
         p1.innerHTML = showCard(card1,0);
         p2.innerHTML = showCard(card2,0);
         // Check winners
+        checkWinner(card1,card2,pot);
+       
         // Update scores
+        s1.innerHTML =  players[0].length;
+        s2.innerHTML =  players[1].length;
         
     }
 }
@@ -83,5 +90,26 @@ function showCard(c,p){
       console.log(c, move);
       return bCard;
 }
+
+function checkWinner(card1,card2,pot){
+    console.log(card1,card2);
+    if(card1.cardValue > card2.cardValue){
+        console.log("hand 1 wins");
+        players[0] = players[0].concat(pot);
+    } 
+    else if(card1.cardValue < card2.cardValue){
+        console.log("hand 2 wins");
+        players[0] = players[0].concat(pot);       
+    }else{
+        console.log("tie");
+        //enter battle mode
+    }
+    console.log(players);
+        
+}
+
+
+
+
 
 
